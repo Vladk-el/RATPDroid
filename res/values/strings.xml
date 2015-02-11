@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RATPDroid</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="rer">RER</string>
+    <string name="metro">METRO</string>
+    <string name="tramway">TRAMWAY</string>
+    <string name="bus">BUS</string>
+    <string name="search">Rechercher</string>
+    <string name="title_activity_list_transports">ListTransports</string>
+
+</resources>
