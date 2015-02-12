@@ -8,6 +8,8 @@
     <string name="tramway">TRAMWAY</string>
     <string name="bus">BUS</string>
     <string name="search">Rechercher</string>
+    <string name="add">Ajouter</string>
     <string name="title_activity_list_transports">ListTransports</string>
-
+    <string name="title_activity_list_stations">ListStations</string>
+    
 </resources>

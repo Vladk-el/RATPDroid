@@ -13,7 +13,8 @@
 				android:background="@drawable/noborder"
 				android:hint="@string/search"
 				android:padding="8dp"
-				android:singleLine="true"/>
+				android:singleLine="true"
+				android:textColor="@color/text_color"/>
 			
 			<ImageView
 				android:layout_width="40dp"

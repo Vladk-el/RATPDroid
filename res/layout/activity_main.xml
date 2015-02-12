@@ -17,11 +17,15 @@
                 android:layout_marginTop="50dp" >
 
                 <Button
+                    android:id="@+id/buttonRER"
+                    android:onClick="onButtonRERClick"
                     style="@style/buttonSelectTransportStyle"
 			        android:drawableTop="@drawable/rer"
 			        android:text="@string/rer" />
                 
                 <Button
+                    android:id="@+id/buttonBUS"
+                    android:onClick="onButtonBUSClick"
                     style="@style/buttonSelectTransportStyle"
 			        android:drawableTop="@drawable/bus"
 			        android:text="@string/bus" />
@@ -34,11 +38,15 @@
 		                android:layout_marginTop="25dp" >
 		
 		                <Button
+		                    android:id="@+id/buttonMETRO"
+		                    android:onClick="onButtonMETROClick"
 							style="@style/buttonSelectTransportStyle"
 					        android:drawableTop="@drawable/metro"
 					        android:text="@string/metro" />
                 
 		                <Button
+		                    android:id="@+id/buttonTRAMWAY"
+		                    android:onClick="onButtonTRAMWAYClick"
 							style="@style/buttonSelectTransportStyle"
 					        android:drawableTop="@drawable/tramway"
 					        android:text="@string/tramway" />

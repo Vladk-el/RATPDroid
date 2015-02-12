@@ -26,6 +26,10 @@
             android:name=".ListTransports"
             android:label="@string/title_activity_list_transports" >
         </activity>
+        <activity
+            android:name=".ListStations"
+            android:label="@string/title_activity_list_stations" >
+        </activity>
     </application>
 
 </manifest>
