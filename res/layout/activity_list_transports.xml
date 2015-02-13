@@ -16,7 +16,8 @@
     
     <ListView
         android:id="@+id/listAllTransports"
-        android:layout_marginTop="20dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_list"
         android:layout_width="fill_parent"  
         android:layout_height="wrap_content"
         android:textColor="@color/text_color" />

@@ -1,32 +1,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:fillViewport="true"
+    android:layout_height="match_parent"
     android:background="#fff"
-    android:orientation="vertical">
+    android:fillViewport="true"
+    android:orientation="vertical" >
 
-    <include layout="@layout/search_layout"/>
-    
+    <include layout="@layout/search_layout" />
+
     <TextView
-    	android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/textViewListStations"
-        android:textColor="@color/text_color"
-        android:padding="10dp"/>
-    
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:textColor="@color/text_color" />
+
     <ListView
         android:id="@+id/listAllStations"
-        android:layout_marginTop="20dp"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
         android:layout_margin="10dp"
-        android:textColor="@color/text_color"/>
-    
+        android:layout_height="300dp"
+        android:layout_weight="10"
+        android:background="@drawable/border_list"
+        android:textColor="@color/text_color" />
+
     <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_launcher"
-            android:text="@string/add"
-            android:textColor="@color/text_color" />
-    
+        android:id="@+id/buttonAddStations"
+        android:onClick="onButtonAddStationsClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="1"
+        android:text="@string/add"
+        android:textColor="@color/text_color" />
+
 </LinearLayout>

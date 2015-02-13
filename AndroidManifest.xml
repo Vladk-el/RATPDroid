@@ -30,6 +30,10 @@
             android:name=".ListStations"
             android:label="@string/title_activity_list_stations" >
         </activity>
+        <activity
+            android:name=".AddStation"
+            android:label="@string/title_activity_add_station" >
+        </activity>
     </application>
 
 </manifest>
