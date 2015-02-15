@@ -1,5 +1,10 @@
 package esgi.project.ratpdroid;
 
+import java.util.List;
+
+import esgi.project.ratpdroid.db.DBLineHandler;
+import esgi.project.ratpdroid.db.LineDAO;
+import esgi.project.ratpdroid.model.Line;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -54,6 +59,15 @@ public class ListTransports extends Activity {
 				intent.putExtra("TransportName",item);
 				startActivity(intent);
 			}
-			});
+		});
+		
+		/* ==> Ne marche pas, j'arrive pas à savoir ou foutr ce putin de fichier ratp.db ....
+		LineDAO ldao = new LineDAO(this);
+		ldao.open();
+		List<Line> lines = ldao.getAll();
+		for(Line line : lines){
+			System.out.println(line);
+		}
+		*/
 	}
 }
