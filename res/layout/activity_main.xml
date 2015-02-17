@@ -64,7 +64,7 @@
                 android:id="@+id/buttonReset"
                 style="@style/buttonSelectTransportStyle"
                 android:drawableTop="@drawable/reset"
-                android:onClick="onButtonResetlick"
+                android:onClick="onButtonResetClick"
                 android:text="@string/reset" />
         </LinearLayout>
     </LinearLayout>
