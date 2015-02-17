@@ -11,14 +11,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity {
 
 	private static final String TAG = "MainActivity";
 	private Intent intent;
+
+	private ImageView buttonSearch;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,24 +64,42 @@ public class MainActivity extends Activity {
 			e.printStackTrace();
 		}
 
-		/*
-		DBManager dbManager = new DBManager(this);
-		Log.v(TAG, "Database is there with version: "
-				+ dbManager.getReadableDatabase().getVersion());
-		String sql = "select * from prizes";
-
-		SQLiteDatabase db = dbManager.getReadableDatabase();
-		Cursor cursor = db.rawQuery(sql, null);
-		Log.v(TAG, "Query Result:" + cursor);
-
-		cursor.close();
-		db.close();
-		dbManager.close();
-		*/
 	}
 
 	public void onButtonRERClick(View view) {
 		Log.v(TAG, "Click sur le bouton RER");
+
+		Log.v(TAG, "Methode onCreate");
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+
+		Log.v(TAG, "Methode onStart");
+
+		events();
+	}
+
+	private void events() {
+
+		Log.v(TAG, "Methode events");
+
+		View search_layout = findViewById(R.id.search);
+		buttonSearch = (ImageView) search_layout
+				.findViewById(R.id.searchButton);
+
+		buttonSearch.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Log.v(TAG, "Click sur le bouton search");
+
+			}
+		});
+	}
+
+	public void onButtonRERClick(View view) {
+
+		Log.v(TAG, "Methode onButtonRERClick");
 
 		intent = new Intent(this, ListTransports.class);
 		intent.putExtra("Transport", "RER");
@@ -82,6 +108,7 @@ public class MainActivity extends Activity {
 
 	public void onButtonMETROClick(View view) {
 		Log.v(TAG, "Click sur le bouton METRO");
+		Log.v(TAG, "Methode onButtonMETROClick");
 
 		intent = new Intent(this, ListTransports.class);
 		intent.putExtra("Transport", "METRO");
@@ -102,5 +129,23 @@ public class MainActivity extends Activity {
 		intent = new Intent(this, ListTransports.class);
 		intent.putExtra("Transport", "TRAMWAY");
 		startActivity(intent);
+		Log.v(TAG, "Methode onButtonBUSClick");
+
+		intent = new Intent(this, ListTransports.class);
+		intent.putExtra("Transport", "BUS");
+		startActivity(intent);
+	}
+
+	public void onButtonTRAMWAYClick(View view) {
+		Log.v(TAG, "Methode onButtonTRAMWAYClick");
+
+		intent = new Intent(this, ListTransports.class);
+		intent.putExtra("Transport", "TRAMWAY");
+		startActivity(intent);
+	}
+	
+	public void onButtonResetClick(View view) {
+		Log.v(TAG, "Methode onButtonResetClick");
+		
 	}
 }
