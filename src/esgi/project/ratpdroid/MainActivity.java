@@ -121,6 +121,8 @@ public class MainActivity extends Activity {
 			@Override
 			public void run() {
 				try {
+					Thread t = new Thread();
+					t.sleep(2000);
 					resetBDD();
 				} catch (Exception e) {
 				}

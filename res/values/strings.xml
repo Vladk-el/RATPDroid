@@ -7,7 +7,7 @@
     <string name="metro">METRO</string>
     <string name="tramway">TRAMWAY</string>
     <string name="bus">BUS</string>
-    <string name="reset">Réinitialiser</string>
+    <string name="reset">Initialiser</string>
     <string name="search">Rechercher</string>
     <string name="add">Ajouter</string>
     <string name="gmaps">Google Maps</string>
