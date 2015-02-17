@@ -1,55 +1,72 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:fillViewport="true"
-    android:background="#fff">
+    style="@style/scrollViewStyle" >
 
-    <LinearLayout android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                
-    <include layout="@layout/search_layout"/>
-        
-  	<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="50dp" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical" >
 
-                <Button
-                    android:id="@+id/buttonRER"
-                    android:onClick="onButtonRERClick"
-                    style="@style/buttonSelectTransportStyle"
-			        android:drawableTop="@drawable/rer"
-			        android:text="@string/rer" />
-                
-                <Button
-                    android:id="@+id/buttonBUS"
-                    android:onClick="onButtonBUSClick"
-                    style="@style/buttonSelectTransportStyle"
-			        android:drawableTop="@drawable/bus"
-			        android:text="@string/bus" />
-            </LinearLayout>
-	
-		    <LinearLayout
-		                android:layout_width="match_parent"
-		                android:layout_height="wrap_content"
-		                android:orientation="horizontal"
-		                android:layout_marginTop="25dp" >
-		
-		                <Button
-		                    android:id="@+id/buttonMETRO"
-		                    android:onClick="onButtonMETROClick"
-							style="@style/buttonSelectTransportStyle"
-					        android:drawableTop="@drawable/metro"
-					        android:text="@string/metro" />
-                
-		                <Button
-		                    android:id="@+id/buttonTRAMWAY"
-		                    android:onClick="onButtonTRAMWAYClick"
-							style="@style/buttonSelectTransportStyle"
-					        android:drawableTop="@drawable/tramway"
-					        android:text="@string/tramway" />
-		    </LinearLayout>
-	</LinearLayout>
+        <include
+            android:id="@+id/search"
+            layout="@layout/search_layout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/buttonRER"
+                style="@style/buttonSelectTransportStyle"
+                android:drawableTop="@drawable/rer"
+                android:onClick="onButtonRERClick"
+                android:text="@string/rer" />
+
+            <Button
+                android:id="@+id/buttonBUS"
+                style="@style/buttonSelectTransportStyle"
+                android:drawableTop="@drawable/bus"
+                android:onClick="onButtonBUSClick"
+                android:text="@string/bus" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/buttonMETRO"
+                style="@style/buttonSelectTransportStyle"
+                android:drawableTop="@drawable/metro"
+                android:onClick="onButtonMETROClick"
+                android:text="@string/metro" />
+
+            <Button
+                android:id="@+id/buttonTRAMWAY"
+                style="@style/buttonSelectTransportStyle"
+                android:drawableTop="@drawable/tramway"
+                android:onClick="onButtonTRAMWAYClick"
+                android:text="@string/tramway" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/buttonReset"
+                style="@style/buttonSelectTransportStyle"
+                android:drawableTop="@drawable/reset"
+                android:onClick="onButtonResetlick"
+                android:text="@string/reset" />
+        </LinearLayout>
+    </LinearLayout>
+
 </ScrollView>

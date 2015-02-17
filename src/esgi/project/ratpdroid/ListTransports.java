@@ -17,57 +17,84 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ListTransports extends Activity {
 
 	private static final String TAG = "ListTransports";
-	
-	private String[] lesJoursSemaine = {"lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"}; 
+
+	private String[] lesJoursSemaine = { "lundi", "mardi", "mercredi", "jeudi",
+			"vendredi", "samedi", "dimanche" };
 	private ListView myList;
 	private TextView textViewListTransports;
 	private Intent intent;
-	
+
+	private ImageView buttonSearch;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_list_transports);		
+		setContentView(R.layout.activity_list_transports);
+		
+		Log.v(TAG, "Methode onCreate");
 	}
-	
+
+	private void events() {
+		
+		Log.v(TAG, "Methode events");
+
+		myList = (ListView) findViewById(R.id.listAllTransports);
+		textViewListTransports = (TextView) findViewById(R.id.textViewListTransports);
+
+		textViewListTransports.setText("Liste des "
+				+ getIntent().getStringExtra("Transport"));
+		myList.setAdapter(new ArrayAdapter<String>(this,
+				R.layout.activity_list, lesJoursSemaine));
+
+		intent = new Intent(this, ListStations.class);
+
+		myList.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				String item = lesJoursSemaine[arg2];
+				Log.v(TAG, "Item : " + item);
+
+				intent.putExtra("TransportName", item);
+				startActivity(intent);
+			}
+		});
+
+		View search_layout = findViewById(R.id.search);
+		buttonSearch = (ImageView) search_layout
+				.findViewById(R.id.searchButton);
+
+		buttonSearch.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Log.v(TAG, "Click sur le bouton search");
+
+			}
+		});
+	}
+
 	@Override
 	protected void onStart() {
 		super.onStart();
 		
-		Log.v(TAG,"Value : " + getIntent().getStringExtra("Transport"));		
-		
-		myList = (ListView) findViewById(R.id.listAllTransports);	
-		textViewListTransports = (TextView) findViewById(R.id.textViewListTransports);	
+		Log.v(TAG, "Methode onStart");
 
-		textViewListTransports.setText("Liste des " + getIntent().getStringExtra("Transport"));
-		myList.setAdapter(new ArrayAdapter<String>(this, R.layout.activity_list, lesJoursSemaine));
-			
-		intent = new Intent(this,ListStations.class);
+		Log.v(TAG, "Value : " + getIntent().getStringExtra("Transport"));
 		
-		myList.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
-				String item = lesJoursSemaine[arg2];
-				Log.v(TAG,"Item : " + item);	
-				
-				intent.putExtra("TransportName",item);
-				startActivity(intent);
-			}
-		});
-		
-		/* ==> Ne marche pas, j'arrive pas à savoir ou foutr ce putin de fichier ratp.db ....
-		LineDAO ldao = new LineDAO(this);
-		ldao.open();
-		List<Line> lines = ldao.getAll();
-		for(Line line : lines){
-			System.out.println(line);
-		}
-		*/
+		events();
+
+		/*
+		 * ==> Ne marche pas, j'arrive pas à savoir ou foutr ce putin de fichier
+		 * ratp.db .... LineDAO ldao = new LineDAO(this); ldao.open();
+		 * List<Line> lines = ldao.getAll(); for(Line line : lines){
+		 * System.out.println(line); }
+		 */
 	}
 }

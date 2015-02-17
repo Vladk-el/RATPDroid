@@ -24,10 +24,14 @@ public class AddStation extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_station);
+		
+		Log.v(TAG, "Methode onCreate");
 	}
 	
 	protected void onStart() {
 		super.onStart();
+		
+		Log.v(TAG, "Methode onStart");
 		
 		Log.v(TAG,"Value : " + getIntent().getStringExtra("Transport"));		
 		

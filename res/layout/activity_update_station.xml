@@ -7,7 +7,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textViewAddStation"
+            android:id="@+id/textViewUpdateStation"
             style="@style/textViewStyle"
             android:padding="10dp" />
 
@@ -21,7 +21,7 @@
             <TextView
                 style="@style/textViewStyle"
                 android:layout_marginTop="10dp"
-                android:text="@string/name_station" />
+                android:text="@string/name_update_station" />
 
             <EditText style="@style/editTextStyle" />
         </LinearLayout>
@@ -57,6 +57,7 @@
         <Button
             android:id="@+id/buttonAddStations"
             style="@style/buttonStyle"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:onClick="onButtonAddStationsClick"
             android:text="@string/add" />
