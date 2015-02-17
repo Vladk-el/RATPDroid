@@ -61,13 +61,13 @@ public class ListTransports extends Activity {
 			}
 		});
 		
-		/* ==> Ne marche pas, j'arrive pas à savoir ou foutr ce putin de fichier ratp.db ....
+		// ==> Ne marche pas, j'arrive pas à savoir ou foutr ce putin de fichier ratp.db ....
 		LineDAO ldao = new LineDAO(this);
 		ldao.open();
-		List<Line> lines = ldao.getAll();
+		List<Line> lines = ldao.getByType(1);
 		for(Line line : lines){
 			System.out.println(line);
 		}
-		*/
+		
 	}
 }
