@@ -23,5 +23,6 @@
     <string name="title_activity_update_station">UpdateStation</string>
     <string name="tramway">TRAMWAY</string>
     <string name="update">Update</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>

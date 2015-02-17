@@ -84,6 +84,9 @@ public class DetailStation extends Activity {
 										.GetCurrentStop());
 
 								sdao.close();
+								
+								MyApplication app = ((MyApplication) ((Activity) that).getApplication());
+								app.initDatas();
 
 								intent = new Intent(that, ListStations.class);
 								startActivity(intent);

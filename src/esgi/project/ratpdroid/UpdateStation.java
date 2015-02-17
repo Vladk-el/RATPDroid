@@ -95,6 +95,9 @@ public class UpdateStation extends Activity {
 			sdao.update(stop);
 
 			sdao.close();
+			
+			MyApplication app = ((MyApplication) this.getApplication());
+			app.initDatas();
 
 			intent = new Intent(this, ListStations.class);
 			startActivity(intent);

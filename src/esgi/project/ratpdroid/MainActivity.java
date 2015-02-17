@@ -41,35 +41,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		Log.v(TAG, "START MAIN ACTIVITY");
-
-		try {
-
-			String destPath = "/data/data/" + getPackageName()
-					+ "/databases/ratp.db";
-
-			Log.v(TAG, destPath);
-
-			File f = new File(destPath);
-			if (!f.exists()) {
-				Log.v(TAG, "File Not Exist");
-				InputStream in = getAssets().open("ratp.db");
-				OutputStream out = new FileOutputStream(destPath);
-
-				byte[] buffer = new byte[1024];
-				int length;
-				while ((length = in.read(buffer)) > 0) {
-					out.write(buffer, 0, length);
-				}
-				in.close();
-				out.close();
-			}
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			Log.v(TAG, "ioexeption");
-			e.printStackTrace();
-		}
+		
 	}
 
 	@Override
@@ -121,8 +93,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void run() {
 				try {
-					Thread t = new Thread();
-					t.sleep(2000);
+					Thread.sleep(2000);
 					resetBDD();
 				} catch (Exception e) {
 				}

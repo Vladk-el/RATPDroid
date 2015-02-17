@@ -85,8 +85,11 @@ public class AddStation extends Activity {
 			sdao.insert(stop);
 
 			sdao.close();
+			
+			MyApplication app = ((MyApplication) this.getApplication());
+			app.initDatas();
 
-			intent = new Intent(this, DetailStation.class);
+			intent = new Intent(this, ListStations.class);
 			startActivity(intent);
 			this.finish();
 		} catch (Exception E) {
