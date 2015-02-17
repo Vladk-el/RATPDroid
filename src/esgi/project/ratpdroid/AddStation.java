@@ -10,10 +10,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class AddStation extends Activity {
 
 	private static final String TAG = "AddStation";
+
+	private TextView textViewAddStation;
 
 	private EditText editTextNameAddStation;
 	private EditText editTextLatitudeAddStation;
@@ -39,8 +42,9 @@ public class AddStation extends Activity {
 		editTextNameAddStation = (EditText) findViewById(R.id.editTextNameAddStation);
 		editTextLongitudeAddStation = (EditText) findViewById(R.id.editTextLongitudeAddStation);
 		editTextLatitudeAddStation = (EditText) findViewById(R.id.editTextLatitudeAddStation);
+		textViewAddStation = (TextView) findViewById(R.id.textViewAddStation);
 
-		editTextNameAddStation.setText("Ajouter une station "
+		textViewAddStation.setText("Ajouter une station "
 				+ Datas.GetInstance().GetCurrentLine());
 	}
 
@@ -79,11 +83,12 @@ public class AddStation extends Activity {
 			sdao.open();
 
 			sdao.insert(stop);
-			
+
 			sdao.close();
 
-			intent = new Intent(this, ListStations.class);
+			intent = new Intent(this, DetailStation.class);
 			startActivity(intent);
+			this.finish();
 		} catch (Exception E) {
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -103,5 +108,4 @@ public class AddStation extends Activity {
 
 		return randomNum;
 	}
-
 }

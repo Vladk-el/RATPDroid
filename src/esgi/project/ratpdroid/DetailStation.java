@@ -1,7 +1,9 @@
 package esgi.project.ratpdroid;
 
+import esgi.project.ratpdroid.db.StopDAO;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,7 +50,7 @@ public class DetailStation extends Activity {
 
 		textViewLongitudeStation.setText(""
 				+ Datas.GetInstance().GetCurrentStop().getLon());
-		
+
 		textViewLatitudeStation.setText(""
 				+ Datas.GetInstance().GetCurrentStop().getLat());
 	}
@@ -63,6 +65,8 @@ public class DetailStation extends Activity {
 	public void onButtonDeleteClick(View view) {
 		Log.v(TAG, "Methode onButtonDeleteClick");
 
+		
+		final Context that = this;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Supprimer la station")
 				.setMessage("Etes-vous sur de vouloir supprimer la station ?")
@@ -72,6 +76,18 @@ public class DetailStation extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								Log.v(TAG, "Click sur Oui");
+
+								StopDAO sdao = new StopDAO(that);
+								sdao.open();
+
+								sdao.remove(Datas.GetInstance()
+										.GetCurrentStop());
+
+								sdao.close();
+
+								intent = new Intent(that, ListStations.class);
+								startActivity(intent);
+								((Activity) that).finish();
 							}
 						}).setNegativeButton("Non", null).show();
 	}

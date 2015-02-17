@@ -8,7 +8,7 @@
         android:focusableInTouchMode="true"
         android:orientation="vertical" >
 
-        <LinearLayout style="@style/LinearLayoutDetailStation" >
+        <LinearLayout style="@style/LinearLayoutDetailStation" android:gravity="center_horizontal" >
 
             <Button
                 android:id="@+id/buttonUpdateStation"
@@ -27,7 +27,8 @@
 
             <TextView
                 style="@style/textViewStyle"
-                android:text="@string/name" />
+                android:text="@string/name"
+                android:gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/textViewNameStation"

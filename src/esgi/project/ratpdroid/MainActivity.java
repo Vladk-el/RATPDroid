@@ -12,6 +12,7 @@ import esgi.project.ratpdroid.db.StopDAO;
 import esgi.project.ratpdroid.model.Stop;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +34,7 @@ public class MainActivity extends Activity {
 
 	private ImageView buttonSearch;
 	private EditText editTextSearch;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,27 +86,47 @@ public class MainActivity extends Activity {
 		Log.v(TAG, "Methode events");
 
 		View search_layout = findViewById(R.id.search);
-		buttonSearch = (ImageView) search_layout.findViewById(R.id.searchButton);
-		editTextSearch = (EditText) search_layout.findViewById(R.id.editTextSearch);
+		buttonSearch = (ImageView) search_layout
+				.findViewById(R.id.searchButton);
+		editTextSearch = (EditText) search_layout
+				.findViewById(R.id.editTextSearch);
 
 		buttonSearch.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Log.v(TAG, "Click sur le bouton search");
-				
-				for(Stop stop : Datas.GetInstance().GetStops())
-				{
-					if(stop.getName().contains(editTextSearch.getText().toString().toUpperCase()))
-					{
+
+				for (Stop stop : Datas.GetInstance().GetStops()) {
+					if (stop.getName().contains(
+							editTextSearch.getText().toString().toUpperCase())) {
 						Datas.GetInstance().SetCurrentStop(stop);
-						
+
 						intent = new Intent(v.getContext(), DetailStation.class);
 						startActivity(intent);
-						
+
 						break;
 					}
 				}
 			}
 		});
+	}
+
+	public void launchRingDialog(View view) {
+		final ProgressDialog ringProgressDialog = ProgressDialog
+				.show(MainActivity.this,
+						"Patientez ...",
+						"Merci de patientez pendant la réinitialisation de la base de données ...",
+						true);
+		ringProgressDialog.setCancelable(true);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					resetBDD();
+				} catch (Exception e) {
+				}
+				ringProgressDialog.dismiss();
+			}
+		}).start();
 	}
 
 	public void onButtonRERClick(View view) {
@@ -140,9 +161,7 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
-	public void onButtonResetClick(View view) {
-		Log.v(TAG, "Methode onButtonResetClick");
-
+	private void resetBDD() {
 		try {
 
 			String destPath = "/data/data/" + getPackageName()
@@ -170,5 +189,11 @@ public class MainActivity extends Activity {
 			Log.v(TAG, "ioexeption");
 			e.printStackTrace();
 		}
+	}
+
+	public void onButtonResetClick(View view) {
+		Log.v(TAG, "Methode onButtonResetClick");
+
+		launchRingDialog(view);
 	}
 }

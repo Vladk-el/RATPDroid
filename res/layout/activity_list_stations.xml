@@ -15,7 +15,8 @@
         <TextView
             android:id="@+id/textViewListStations"
             style="@style/textViewStyle"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:gravity="center_horizontal" />
 
         <ListView
             android:id="@+id/listAllStations"

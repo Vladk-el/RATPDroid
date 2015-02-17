@@ -9,7 +9,8 @@
         <TextView
             android:id="@+id/textViewUpdateStation"
             style="@style/textViewStyle"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:gravity="center_horizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +24,9 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/name_update_station" />
 
-            <EditText style="@style/editTextStyle" />
+            <EditText
+                android:id="@+id/editTextNameUpdateStation"
+                style="@style/editTextStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -37,7 +40,9 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/longitude" />
 
-            <EditText style="@style/editTextStyle" />
+            <EditText
+                android:id="@+id/editTextLongitudeUpdateStation"
+                style="@style/editTextStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,15 +56,17 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/latitude" />
 
-            <EditText style="@style/editTextStyle" />
+            <EditText
+                android:id="@+id/editTextLatitudeUpdateStation"
+                style="@style/editTextStyle" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/buttonAddStations"
+            android:id="@+id/buttonUpdateStation"
             style="@style/buttonStyle"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:onClick="onButtonAddStationsClick"
+            android:onClick="onButtonUpdateStationClick"
             android:text="@string/update" />
     </LinearLayout>
 
