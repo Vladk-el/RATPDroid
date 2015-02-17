@@ -1,5 +1,12 @@
 package esgi.project.ratpdroid;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,14 +25,44 @@ public class MainActivity extends Activity {
 
 	private static final String TAG = "MainActivity";
 	private Intent intent;
+
 	private ImageView buttonSearch;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		Log.v(TAG, "START MAIN ACTIVITY");
 
-		Log.v(TAG, "Methode onCreate");
+		try {
+
+			String destPath = "/data/data/" + getPackageName()
+					+ "/databases/ratp.db";
+			
+			Log.v(TAG, destPath);
+
+			File f = new File(destPath);
+			if (!f.exists()) {
+				Log.v(TAG, "File Not Exist");
+				InputStream in = getAssets().open("ratp.db");
+				OutputStream out = new FileOutputStream(destPath);
+
+				byte[] buffer = new byte[1024];
+				int length;
+				while ((length = in.read(buffer)) > 0) {
+					out.write(buffer, 0, length);
+				}
+				in.close();
+				out.close();
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			Log.v(TAG, "ioexeption");
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -54,7 +91,6 @@ public class MainActivity extends Activity {
 	}
 
 	public void onButtonRERClick(View view) {
-
 		Log.v(TAG, "Methode onButtonRERClick");
 
 		intent = new Intent(this, ListTransports.class);
@@ -71,7 +107,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void onButtonBUSClick(View view) {
-		Log.v(TAG, "Methode onButtonBUSClick");
+		Log.v(TAG, "Click sur le bouton BUS");
 
 		intent = new Intent(this, ListTransports.class);
 		intent.putExtra("Transport", "BUS");
@@ -79,10 +115,10 @@ public class MainActivity extends Activity {
 	}
 
 	public void onButtonTRAMWAYClick(View view) {
-		Log.v(TAG, "Methode onButtonTRAMWAYClick");
+		Log.v(TAG, "Methode onButtonBUSClick");
 
 		intent = new Intent(this, ListTransports.class);
-		intent.putExtra("Transport", "TRAMWAY");
+		intent.putExtra("Transport", "BUS");
 		startActivity(intent);
 	}
 

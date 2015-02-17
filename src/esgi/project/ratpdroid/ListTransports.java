@@ -89,12 +89,13 @@ public class ListTransports extends Activity {
 		Log.v(TAG, "Value : " + getIntent().getStringExtra("Transport"));
 		
 		events();
-
-		/*
-		 * ==> Ne marche pas, j'arrive pas à savoir ou foutr ce putin de fichier
-		 * ratp.db .... LineDAO ldao = new LineDAO(this); ldao.open();
-		 * List<Line> lines = ldao.getAll(); for(Line line : lines){
-		 * System.out.println(line); }
-		 */
+		
+		// ==> OK
+		LineDAO ldao = new LineDAO(this);
+		ldao.open();
+		List<Line> lines = ldao.getByType(1);
+		for(Line line : lines){
+			System.out.println(line);
+		}
 	}
 }
