@@ -73,7 +73,7 @@ private SQLiteDatabase bdd;
 	}
 	
 	public List<Stop> getByLine(String id_line){
-		String where = DataBaseHelper.STOP_IDLINE + " = " + id_line;
+		String where = DataBaseHelper.STOP_IDLINE + " = \"" + id_line + "\"";
 		Cursor c = bdd.query(DataBaseHelper.TABLE_STOP, DataBaseHelper.STOP_CURSOR_QUERY, where, null, null, null, null);
 		return cursorToStops(c);
 	}

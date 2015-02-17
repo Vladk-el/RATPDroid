@@ -1,5 +1,11 @@
 package esgi.project.ratpdroid;
 
+import java.util.List;
+
+import esgi.project.ratpdroid.db.LineDAO;
+import esgi.project.ratpdroid.db.StopDAO;
+import esgi.project.ratpdroid.model.Line;
+import esgi.project.ratpdroid.model.Stop;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,14 +24,13 @@ public class ListStations extends Activity {
 
 	private static final String TAG = "ListStations";
 
-	private String[] lesJoursSemaine = { "lundi", "mardi", "mercredi", "jeudi",
-			"vendredi", "samedi", "dimanche" };
-
 	private ListView myList;
 	private TextView textViewListStations;
 	private Intent intent;
 
 	private ImageView buttonSearch;
+	private List<Stop> stops;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +46,9 @@ public class ListStations extends Activity {
 		
 		Log.v(TAG, "Methode onStart");
 
-		Log.v(TAG, "Value : " + getIntent().getStringExtra("TransportName"));
-
 		events();
+		
+		Log.v(TAG, "Value : " + CurrentData.GetInstance().GetCurrentLine());
 	}
 
 	private void events() {
@@ -64,10 +69,14 @@ public class ListStations extends Activity {
 		myList = (ListView) findViewById(R.id.listAllStations);
 		textViewListStations = (TextView) findViewById(R.id.textViewListStations);
 
-		textViewListStations.setText("Liste des stations "
-				+ getIntent().getStringExtra("TransportName"));
-		myList.setAdapter(new ArrayAdapter<String>(this,
-				R.layout.activity_list, lesJoursSemaine));
+		textViewListStations.setText("Liste des stations " + CurrentData.GetInstance().GetCurrentLine());
+		
+		StopDAO sdao = new StopDAO(this);
+		sdao.open();
+		
+		stops = sdao.getByLine(CurrentData.GetInstance().GetCurrentLine().getShortName());
+		
+		myList.setAdapter(new ArrayAdapter<Stop>(this,R.layout.activity_list, stops));
 
 		intent = new Intent(this, DetailStation.class);
 
@@ -75,10 +84,10 @@ public class ListStations extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				String item = lesJoursSemaine[arg2];
-				Log.v(TAG, "Item : " + item);
+				Stop stop = stops.get(arg2);
+				Log.v(TAG, "Stop : " + stop);
 
-				intent.putExtra("NameStation", item);
+				CurrentData.GetInstance().SetCurrentStop(stop);
 				startActivity(intent);
 			}
 		});

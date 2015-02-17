@@ -16,6 +16,8 @@ public class DetailStation extends Activity {
 	private static final String TAG = "DetailStation";
 
 	private TextView textViewNameStation;
+	private TextView textViewLongitudeStation;
+	private TextView textViewLatitudeStation;
 
 	private Intent intent;
 
@@ -23,31 +25,38 @@ public class DetailStation extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detail_station);
-		
+
 		Log.v(TAG, "Methode onCreate");
 	}
 
 	protected void onStart() {
 		super.onStart();
-		
+
 		Log.v(TAG, "Methode onStart");
 
-		Log.v(TAG,
-				"Nom de la station : "
-						+ getIntent().getStringExtra("NameStation"));
+		Log.v(TAG, "Nom de la station : "
+				+ CurrentData.GetInstance().GetCurrentStop());
 
 		intent = new Intent(this, UpdateStation.class);
 
 		textViewNameStation = (TextView) findViewById(R.id.textViewNameStation);
+		textViewLongitudeStation = (TextView) findViewById(R.id.textViewLongitudeStation);
+		textViewLatitudeStation = (TextView) findViewById(R.id.textViewLatitudeStation);
 
-		textViewNameStation.setText(getIntent().getStringExtra("NameStation"));
+		textViewNameStation.setText(CurrentData.GetInstance().GetCurrentStop()
+				.toString());
+
+		textViewLongitudeStation.setText(""
+				+ CurrentData.GetInstance().GetCurrentStop().getLon());
+		
+		textViewLatitudeStation.setText(""
+				+ CurrentData.GetInstance().GetCurrentStop().getLat());
 	}
 
 	public void onButtonUpdateClick(View view) {
 
 		Log.v(TAG, "Methode onButtonUpdateClick");
-		
-		intent.putExtra("NameStation", getIntent().getStringExtra("NameStation"));
+
 		startActivity(intent);
 	}
 

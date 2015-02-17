@@ -25,11 +25,10 @@ public class ListTransports extends Activity {
 
 	private static final String TAG = "ListTransports";
 
-	private String[] lesJoursSemaine = { "lundi", "mardi", "mercredi", "jeudi",
-			"vendredi", "samedi", "dimanche" };
 	private ListView myList;
 	private TextView textViewListTransports;
 	private Intent intent;
+	private List<Line> lines;
 
 	private ImageView buttonSearch;
 
@@ -38,12 +37,12 @@ public class ListTransports extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_transports);
-		
+
 		Log.v(TAG, "Methode onCreate");
 	}
 
 	private void events() {
-		
+
 		Log.v(TAG, "Methode events");
 
 		myList = (ListView) findViewById(R.id.listAllTransports);
@@ -51,8 +50,18 @@ public class ListTransports extends Activity {
 
 		textViewListTransports.setText("Liste des "
 				+ getIntent().getStringExtra("Transport"));
-		myList.setAdapter(new ArrayAdapter<String>(this,
-				R.layout.activity_list, lesJoursSemaine));
+
+		LineDAO ldao = new LineDAO(this);
+		ldao.open();
+
+		lines = ldao.getByType(getTransport(getIntent().getStringExtra("Transport")));
+
+		for (Line line : lines) {
+			Log.v(TAG, line.toString());
+		}
+
+		myList.setAdapter(new ArrayAdapter<Line>(this, R.layout.activity_list,
+				lines));
 
 		intent = new Intent(this, ListStations.class);
 
@@ -60,10 +69,10 @@ public class ListTransports extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				String item = lesJoursSemaine[arg2];
-				Log.v(TAG, "Item : " + item);
-
-				intent.putExtra("TransportName", item);
+				Line line = lines.get(arg2);
+				Log.v(TAG, "Ligne : " + line);
+				
+				CurrentData.GetInstance().SetCurrentLine(line);
 				startActivity(intent);
 			}
 		});
@@ -80,22 +89,28 @@ public class ListTransports extends Activity {
 		});
 	}
 
+	private Integer getTransport(String transport) {
+		if (transport.equalsIgnoreCase("TRAM"))
+			return 0;
+
+		else if (transport.equalsIgnoreCase("METRO"))
+			return 1;
+
+		else if (transport.equalsIgnoreCase("RER"))
+			return 2;
+
+		else
+			return 3;
+	}
+
 	@Override
 	protected void onStart() {
 		super.onStart();
-		
+
 		Log.v(TAG, "Methode onStart");
 
 		Log.v(TAG, "Value : " + getIntent().getStringExtra("Transport"));
-		
+
 		events();
-		
-		// ==> OK
-		LineDAO ldao = new LineDAO(this);
-		ldao.open();
-		List<Line> lines = ldao.getByType(1);
-		for(Line line : lines){
-			System.out.println(line);
-		}
 	}
 }

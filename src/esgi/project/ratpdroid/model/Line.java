@@ -1,13 +1,16 @@
 package esgi.project.ratpdroid.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 public class Line {
 
 	private int id;
 	private String shortName;
 	private String longName;
 	private int type;
-	
-	public Line(){
+
+	public Line() {
 		super();
 	}
 
@@ -42,10 +45,29 @@ public class Line {
 	public void setType(int type) {
 		this.type = type;
 	}
-	
-	public String toString(){
-		return shortName + " - " + longName;
+
+	public String toString() {
+
+		String typeTransport = "";
+
+		switch (type) {
+		case 0:
+			typeTransport = "TRAMWAY";
+			break;
+
+		case 1:
+			typeTransport = "METRO";
+			break;
+
+		case 2:
+			typeTransport = "RER";
+			break;
+
+		case 3:
+			typeTransport = "BUS";
+			break;
+		}
+
+		return typeTransport + " " + shortName;
 	}
-	
-	
 }
