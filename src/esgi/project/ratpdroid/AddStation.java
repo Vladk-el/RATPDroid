@@ -1,32 +1,23 @@
 package esgi.project.ratpdroid;
 
 import java.util.Random;
-
-import esgi.project.ratpdroid.db.LineDAO;
 import esgi.project.ratpdroid.db.StopDAO;
 import esgi.project.ratpdroid.model.Stop;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 
 public class AddStation extends Activity {
 
 	private static final String TAG = "AddStation";
 
-	private TextView textViewAddStation;
-	private TextView textViewLatitudeAddStation;
-	private TextView textViewLongitudeAddStation;
+	private EditText editTextNameAddStation;
+	private EditText editTextLatitudeAddStation;
+	private EditText editTextLongitudeAddStation;
 
 	private Intent intent;
 
@@ -45,11 +36,11 @@ public class AddStation extends Activity {
 
 		Log.v(TAG, "Value : " + Datas.GetInstance().GetCurrentLine());
 
-		textViewAddStation = (TextView) findViewById(R.id.textViewAddStation);
-		textViewLongitudeAddStation = (TextView) findViewById(R.id.textViewLongitudeAddStation);
-		textViewLatitudeAddStation = (TextView) findViewById(R.id.textViewLatitudeAddStation);
+		editTextNameAddStation = (EditText) findViewById(R.id.editTextNameAddStation);
+		editTextLongitudeAddStation = (EditText) findViewById(R.id.editTextLongitudeAddStation);
+		editTextLatitudeAddStation = (EditText) findViewById(R.id.editTextLatitudeAddStation);
 
-		textViewAddStation.setText("Ajouter une station "
+		editTextNameAddStation.setText("Ajouter une station "
 				+ Datas.GetInstance().GetCurrentLine());
 	}
 
@@ -60,11 +51,11 @@ public class AddStation extends Activity {
 		try {
 			Stop stop = new Stop();
 			stop.setId(randInt(0, 1634));
-			stop.setIdLine(Datas.GetInstance().GetCurrentLine().getId());
+			stop.setIdLine(Datas.GetInstance().GetCurrentLine().getShortName());
 
-			if (textViewLatitudeAddStation.getText().toString()
+			if (editTextLatitudeAddStation.getText().toString()
 					.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
-				stop.setLat(Double.parseDouble(textViewLatitudeAddStation
+				stop.setLat(Double.parseDouble(editTextLatitudeAddStation
 						.getText().toString()));
 			}
 
@@ -72,9 +63,9 @@ public class AddStation extends Activity {
 				stop.setLat(0);
 			}
 
-			if (textViewLongitudeAddStation.getText().toString()
+			if (editTextLongitudeAddStation.getText().toString()
 					.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
-				stop.setLon(Double.parseDouble(textViewLongitudeAddStation
+				stop.setLon(Double.parseDouble(editTextLongitudeAddStation
 						.getText().toString()));
 			}
 
@@ -82,12 +73,14 @@ public class AddStation extends Activity {
 				stop.setLon(0);
 			}
 
-			stop.setName(textViewAddStation.getText().toString());
+			stop.setName(editTextNameAddStation.getText().toString());
 
 			StopDAO sdao = new StopDAO(this);
 			sdao.open();
 
 			sdao.insert(stop);
+			
+			sdao.close();
 
 			intent = new Intent(this, ListStations.class);
 			startActivity(intent);

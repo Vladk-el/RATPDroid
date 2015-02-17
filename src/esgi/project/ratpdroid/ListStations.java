@@ -92,6 +92,8 @@ public class ListStations extends Activity {
 
 		stops = sdao.getByLine(Datas.GetInstance().GetCurrentLine()
 				.getShortName());
+		
+		sdao.close();
 
 		myList.setAdapter(new ArrayAdapter<Stop>(this, R.layout.activity_list,
 				stops));

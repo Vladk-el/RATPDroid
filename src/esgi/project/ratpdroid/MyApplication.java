@@ -23,5 +23,7 @@ public class MyApplication extends Application {
 		sdao.open();
 		
 		Datas.GetInstance().SetStops(sdao.getAll());
+		
+		sdao.close();
 	}
 }

@@ -95,7 +95,7 @@ private SQLiteDatabase bdd;
 		stop.setLat(c.getDouble(c.getColumnIndex(DataBaseHelper.STOP_LAT)));
 		stop.setLon(c.getDouble(c.getColumnIndex(DataBaseHelper.STOP_LON)));
 		stop.setPosition(c.getInt(c.getColumnIndex(DataBaseHelper.STOP_NUM)));
-		stop.setIdLine(c.getInt(c.getColumnIndex(DataBaseHelper.STOP_IDLINE)));
+		stop.setIdLine(c.getString(c.getColumnIndex(DataBaseHelper.STOP_IDLINE)));
 		
 		c.close();
 		
@@ -115,7 +115,7 @@ private SQLiteDatabase bdd;
 			stop.setLat(c.getDouble(c.getColumnIndex(DataBaseHelper.STOP_LAT)));
 			stop.setLon(c.getDouble(c.getColumnIndex(DataBaseHelper.STOP_LON)));
 			stop.setPosition(c.getInt(c.getColumnIndex(DataBaseHelper.STOP_NUM)));
-			stop.setIdLine(c.getInt(c.getColumnIndex(DataBaseHelper.STOP_IDLINE)));
+			stop.setIdLine(c.getString(c.getColumnIndex(DataBaseHelper.STOP_IDLINE)));
 			lines.add(stop);
 		}
 		

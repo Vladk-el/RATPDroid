@@ -59,6 +59,8 @@ public class ListTransports extends Activity {
 
 		lines = ldao.getByType(getTransport(getIntent().getStringExtra(
 				"Transport")));
+		
+		ldao.close();
 
 		for (Line line : lines) {
 			Log.v(TAG, line.toString());

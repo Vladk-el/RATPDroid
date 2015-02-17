@@ -7,7 +7,7 @@ public class Stop implements Comparable<Stop>{
 	private double lat;
 	private double lon;
 	private int position;
-	private int idLine;
+	private String idLine;
 
 	public Stop(){
 		super();
@@ -52,15 +52,15 @@ public class Stop implements Comparable<Stop>{
 	public void setPosition(int position) {
 		this.position = position;
 	}
-
-	public int getIdLine() {
+	
+	public String getIdLine() {
 		return idLine;
 	}
 
-	public void setIdLine(int idLine) {
+	public void setIdLine(String idLine) {
 		this.idLine = idLine;
 	}
-	
+
 	public String toString(){
 		return name;
 	}

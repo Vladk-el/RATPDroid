@@ -23,7 +23,8 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/name_station" />
 
-            <EditText style="@style/editTextStyle" />
+            <EditText style="@style/editTextStyle"
+                android:id="@+id/editTextNameAddStation" />
         </LinearLayout>
 
         <LinearLayout
@@ -38,7 +39,8 @@
                 android:text="@string/longitude"
                 android:id="@+id/textViewLongitudeAddStation" />
 
-            <EditText style="@style/editTextStyle" />
+            <EditText style="@style/editTextStyle"
+                android:id="@+id/editTextLongitudeAddStation" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,7 +55,8 @@
                 android:text="@string/latitude"
                 android:id="@+id/textViewLatitudeAddStation" />
 
-            <EditText style="@style/editTextStyle" />
+            <EditText style="@style/editTextStyle"
+                android:id="@+id/editTextLatitudeAddStation" />
         </LinearLayout>
 
         <Button
