@@ -10,6 +10,7 @@
     <string name="reset">Réinitialiser</string>
     <string name="search">Rechercher</string>
     <string name="add">Ajouter</string>
+    <string name="gmaps">Google Maps</string>
     <string name="title_activity_list_transports">ListTransports</string>
     <string name="title_activity_list_stations">ListStations</string>
     <string name="title_activity_add_station">AddStation</string>
@@ -22,5 +23,6 @@
     <string name="longitude">Longitude : </string>
     <string name="latitude">Latitude : </string>
     <string name="name_update_station">Nom souhaité de la station : </string>
+    <string name="title_activity_google_maps">GoogleMaps</string>
 
 </resources>

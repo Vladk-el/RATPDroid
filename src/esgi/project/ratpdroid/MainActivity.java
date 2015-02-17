@@ -85,10 +85,9 @@ public class MainActivity extends Activity {
 		intent.putExtra("Transport", "TRAMWAY");
 		startActivity(intent);
 	}
-	
+
 	public void onButtonResetClick(View view) {
 		Log.v(TAG, "Methode onButtonResetClick");
 
-		
 	}
 }
