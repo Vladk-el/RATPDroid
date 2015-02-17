@@ -16,27 +16,34 @@ import android.widget.AdapterView.OnItemClickListener;
 public class AddStation extends Activity {
 
 	private static final String TAG = "AddStation";
-		
-	private TextView textViewAddStation;	
+
+	private TextView textViewAddStation;
 	private Intent intent;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_station);
-		
+
 		Log.v(TAG, "Methode onCreate");
 	}
-	
+
 	protected void onStart() {
 		super.onStart();
-		
-		Log.v(TAG, "Methode onStart");
-		
-		Log.v(TAG,"Value : " + getIntent().getStringExtra("Transport"));		
-		
-		textViewAddStation= (TextView) findViewById(R.id.textViewAddStation);	
 
-		textViewAddStation.setText("Ajouter une station " + getIntent().getStringExtra("Transport"));
+		Log.v(TAG, "Methode onStart");
+
+		Log.v(TAG, "Value : " + Datas.GetInstance().GetCurrentLine());
+
+		textViewAddStation = (TextView) findViewById(R.id.textViewAddStation);
+
+		textViewAddStation.setText("Ajouter une station "
+				+ Datas.GetInstance().GetCurrentLine());
 	}
+
+	public void onButtonAddStationsClick(View view) {
+		
+		
+	}
+
 }

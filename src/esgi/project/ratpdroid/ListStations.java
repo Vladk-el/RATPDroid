@@ -48,7 +48,7 @@ public class ListStations extends Activity {
 
 		events();
 		
-		Log.v(TAG, "Value : " + CurrentData.GetInstance().GetCurrentLine());
+		Log.v(TAG, "Value : " + Datas.GetInstance().GetCurrentLine());
 	}
 
 	private void events() {
@@ -69,12 +69,12 @@ public class ListStations extends Activity {
 		myList = (ListView) findViewById(R.id.listAllStations);
 		textViewListStations = (TextView) findViewById(R.id.textViewListStations);
 
-		textViewListStations.setText("Liste des stations " + CurrentData.GetInstance().GetCurrentLine());
+		textViewListStations.setText("Liste des stations " + Datas.GetInstance().GetCurrentLine());
 		
 		StopDAO sdao = new StopDAO(this);
 		sdao.open();
 		
-		stops = sdao.getByLine(CurrentData.GetInstance().GetCurrentLine().getShortName());
+		stops = sdao.getByLine(Datas.GetInstance().GetCurrentLine().getShortName());
 		
 		myList.setAdapter(new ArrayAdapter<Stop>(this,R.layout.activity_list, stops));
 
@@ -87,7 +87,7 @@ public class ListStations extends Activity {
 				Stop stop = stops.get(arg2);
 				Log.v(TAG, "Stop : " + stop);
 
-				CurrentData.GetInstance().SetCurrentStop(stop);
+				Datas.GetInstance().SetCurrentStop(stop);
 				startActivity(intent);
 			}
 		});

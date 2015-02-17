@@ -58,7 +58,7 @@
     <style name="scrollViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">#fff</item>
+        <item name="android:background">@color/background_color</item>
         <item name="android:fillViewport">true</item>
     </style>
     

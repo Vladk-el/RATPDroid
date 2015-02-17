@@ -72,7 +72,7 @@ public class ListTransports extends Activity {
 				Line line = lines.get(arg2);
 				Log.v(TAG, "Ligne : " + line);
 				
-				CurrentData.GetInstance().SetCurrentLine(line);
+				Datas.GetInstance().SetCurrentLine(line);
 				startActivity(intent);
 			}
 		});

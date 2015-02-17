@@ -60,7 +60,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:onClick="onButtonAddStationsClick"
-            android:text="@string/add" />
+            android:text="@string/update" />
     </LinearLayout>
 
 </ScrollView>

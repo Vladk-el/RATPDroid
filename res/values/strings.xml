@@ -24,5 +24,6 @@
     <string name="latitude">Latitude : </string>
     <string name="name_update_station">Nom souhaité de la station : </string>
     <string name="title_activity_google_maps">GoogleMaps</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>

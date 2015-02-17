@@ -35,7 +35,7 @@ public class DetailStation extends Activity {
 		Log.v(TAG, "Methode onStart");
 
 		Log.v(TAG, "Nom de la station : "
-				+ CurrentData.GetInstance().GetCurrentStop());
+				+ Datas.GetInstance().GetCurrentStop());
 
 		intent = new Intent(this, UpdateStation.class);
 
@@ -43,14 +43,14 @@ public class DetailStation extends Activity {
 		textViewLongitudeStation = (TextView) findViewById(R.id.textViewLongitudeStation);
 		textViewLatitudeStation = (TextView) findViewById(R.id.textViewLatitudeStation);
 
-		textViewNameStation.setText(CurrentData.GetInstance().GetCurrentStop()
+		textViewNameStation.setText(Datas.GetInstance().GetCurrentStop()
 				.toString());
 
 		textViewLongitudeStation.setText(""
-				+ CurrentData.GetInstance().GetCurrentStop().getLon());
+				+ Datas.GetInstance().GetCurrentStop().getLon());
 		
 		textViewLatitudeStation.setText(""
-				+ CurrentData.GetInstance().GetCurrentStop().getLat());
+				+ Datas.GetInstance().GetCurrentStop().getLat());
 	}
 
 	public void onButtonUpdateClick(View view) {

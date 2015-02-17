@@ -26,13 +26,12 @@ public class UpdateStation extends Activity {
 
 		Log.v(TAG, "Methode onStart");
 
-		Log.v(TAG,
-				"Nom de la station : "
-						+ getIntent().getStringExtra("NameStation"));
+		Log.v(TAG, "Nom de la station : "
+				+ Datas.GetInstance().GetCurrentStop());
 
 		textViewUpdateStation = (TextView) findViewById(R.id.textViewUpdateStation);
 
 		textViewUpdateStation.setText("Modifier la station "
-				+ getIntent().getStringExtra("NameStation"));
+				+ Datas.GetInstance().GetCurrentStop());
 	}
 }
