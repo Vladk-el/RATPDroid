@@ -35,7 +35,8 @@
             <TextView
                 style="@style/textViewStyle"
                 android:layout_marginTop="10dp"
-                android:text="@string/longitude" />
+                android:text="@string/longitude"
+                android:id="@+id/textViewLongitudeAddStation" />
 
             <EditText style="@style/editTextStyle" />
         </LinearLayout>
@@ -49,7 +50,8 @@
             <TextView
                 style="@style/textViewStyle"
                 android:layout_marginTop="10dp"
-                android:text="@string/latitude" />
+                android:text="@string/latitude"
+                android:id="@+id/textViewLatitudeAddStation" />
 
             <EditText style="@style/editTextStyle" />
         </LinearLayout>

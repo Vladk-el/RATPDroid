@@ -5,6 +5,7 @@ import java.util.List;
 import esgi.project.ratpdroid.db.DBLineHandler;
 import esgi.project.ratpdroid.db.LineDAO;
 import esgi.project.ratpdroid.model.Line;
+import esgi.project.ratpdroid.model.Stop;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class ListTransports extends Activity {
 	private List<Line> lines;
 
 	private ImageView buttonSearch;
+	private EditText editTextSearch;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,8 @@ public class ListTransports extends Activity {
 		LineDAO ldao = new LineDAO(this);
 		ldao.open();
 
-		lines = ldao.getByType(getTransport(getIntent().getStringExtra("Transport")));
+		lines = ldao.getByType(getTransport(getIntent().getStringExtra(
+				"Transport")));
 
 		for (Line line : lines) {
 			Log.v(TAG, line.toString());
@@ -71,7 +75,7 @@ public class ListTransports extends Activity {
 					long arg3) {
 				Line line = lines.get(arg2);
 				Log.v(TAG, "Ligne : " + line);
-				
+
 				Datas.GetInstance().SetCurrentLine(line);
 				startActivity(intent);
 			}
@@ -80,11 +84,24 @@ public class ListTransports extends Activity {
 		View search_layout = findViewById(R.id.search);
 		buttonSearch = (ImageView) search_layout
 				.findViewById(R.id.searchButton);
+		editTextSearch = (EditText) search_layout
+				.findViewById(R.id.editTextSearch);
 
 		buttonSearch.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Log.v(TAG, "Click sur le bouton search");
 
+				for (Stop stop : Datas.GetInstance().GetStops()) {
+					if (stop.getName().contains(
+							editTextSearch.getText().toString().toUpperCase())) {
+						Datas.GetInstance().SetCurrentStop(stop);
+
+						intent = new Intent(v.getContext(), DetailStation.class);
+						startActivity(intent);
+
+						break;
+					}
+				}
 			}
 		});
 	}

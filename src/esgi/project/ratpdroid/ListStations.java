@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,54 +30,71 @@ public class ListStations extends Activity {
 	private Intent intent;
 
 	private ImageView buttonSearch;
-	private List<Stop> stops;
+	private EditText editTextSearch;
 	
+	private List<Stop> stops;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_stations);
-		
+
 		Log.v(TAG, "Methode onCreate");
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
-		
+
 		Log.v(TAG, "Methode onStart");
 
 		events();
-		
+
 		Log.v(TAG, "Value : " + Datas.GetInstance().GetCurrentLine());
 	}
 
 	private void events() {
-		
+
 		Log.v(TAG, "Methode events");
 
 		View search_layout = findViewById(R.id.search);
 		buttonSearch = (ImageView) search_layout
 				.findViewById(R.id.searchButton);
+		editTextSearch = (EditText) search_layout
+				.findViewById(R.id.editTextSearch);
 
 		buttonSearch.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Log.v(TAG, "Click sur le bouton search");
 
+				for (Stop stop : Datas.GetInstance().GetStops()) {
+					if (stop.getName().contains(
+							editTextSearch.getText().toString().toUpperCase())) {
+						Datas.GetInstance().SetCurrentStop(stop);
+
+						intent = new Intent(v.getContext(), DetailStation.class);
+						startActivity(intent);
+
+						break;
+					}
+				}
 			}
 		});
 
 		myList = (ListView) findViewById(R.id.listAllStations);
 		textViewListStations = (TextView) findViewById(R.id.textViewListStations);
 
-		textViewListStations.setText("Liste des stations " + Datas.GetInstance().GetCurrentLine());
-		
+		textViewListStations.setText("Liste des stations "
+				+ Datas.GetInstance().GetCurrentLine());
+
 		StopDAO sdao = new StopDAO(this);
 		sdao.open();
-		
-		stops = sdao.getByLine(Datas.GetInstance().GetCurrentLine().getShortName());
-		
-		myList.setAdapter(new ArrayAdapter<Stop>(this,R.layout.activity_list, stops));
+
+		stops = sdao.getByLine(Datas.GetInstance().GetCurrentLine()
+				.getShortName());
+
+		myList.setAdapter(new ArrayAdapter<Stop>(this, R.layout.activity_list,
+				stops));
 
 		intent = new Intent(this, DetailStation.class);
 
@@ -94,9 +112,9 @@ public class ListStations extends Activity {
 	}
 
 	public void onButtonAddStationsClick(View view) {
-		
+
 		Log.v(TAG, "Methode onButtonAddStationsClick");
-		
+
 		intent = new Intent(this, AddStation.class);
 		intent.putExtra("Transport", getIntent()
 				.getStringExtra("TransportName"));
